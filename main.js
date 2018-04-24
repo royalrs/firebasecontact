@@ -1,33 +1,35 @@
-// Initialize Firebase (ADD YOUR OWN DATA)
-var config = {
-  apiKey: "xxxxx",
-  authDomain: "xxxxx",
-  databaseURL: "xxxxx",
-  projectId: "xxxxx",
-  storageBucket: "xxxxx",
-  messagingSenderId: "xxxxx"
-};
-firebase.initializeApp(config);
+
+
+  // Initialize Firebase
+  var config = {
+    apiKey: "AIzaSyA72j1yJZlsmB6l6hPUu-vliBxbeTZxHfI",
+    authDomain: "smartrider-20240.firebaseapp.com",
+    databaseURL: "https://smartrider-20240.firebaseio.com",
+    projectId: "smartrider-20240",
+    storageBucket: "smartrider-20240.appspot.com",
+    messagingSenderId: "134863464353"
+  };
+  firebase.initializeApp(config);
 
 // Reference messages collection
-var messagesRef = firebase.database().ref('messages');
+var messagesRef = firebase.database().ref('messages')
 
 // Listen for form submit
-document.getElementById('contactForm').addEventListener('submit', submitForm);
+document.getElementById('registrationform').addEventListener('submit', submitForm);
 
 // Submit form
 function submitForm(e){
   e.preventDefault();
 
   // Get values
-  var name = getInputVal('name');
-  var company = getInputVal('company');
+  var fname = getInputVal('fname');
+  var lname = getInputVal('lname');
   var email = getInputVal('email');
-  var phone = getInputVal('phone');
-  var message = getInputVal('message');
+  var mobile_no = getInputVal('mobile_no');
+  var password = getInputVal('password');
 
   // Save message
-  saveMessage(name, company, email, phone, message);
+  saveMessage(source,destination);
 
   // Show alert
   document.querySelector('.alert').style.display = 'block';
@@ -38,7 +40,7 @@ function submitForm(e){
   },3000);
 
   // Clear form
-  document.getElementById('contactForm').reset();
+  document.getElementById('registrationform').reset();
 }
 
 // Function to get get form values
@@ -47,13 +49,13 @@ function getInputVal(id){
 }
 
 // Save message to firebase
-function saveMessage(name, company, email, phone, message){
+function saveMessage(fname, lname, mobile_no, password){
   var newMessageRef = messagesRef.push();
   newMessageRef.set({
-    name: name,
-    company:company,
-    email:email,
-    phone:phone,
-    message:message
+    fname: fname,
+    lname:lname,
+    mobile_no: mobile_no,
+    password:password,
+
   });
 }
